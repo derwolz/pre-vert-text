@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dual Reflow — pretext + pre-vert-text</title>
+  <title>PreText X PreVert</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
@@ -41,6 +41,12 @@
       will-change: left, top;
     }
 
+    .orb {
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 10;
+      will-change: transform;
+    }
+    .orb.paused { opacity: 0.45; }
+
     .hint {
       position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
       font: 400 12px/1 "Helvetica Neue", sans-serif;
@@ -61,7 +67,7 @@
 <body>
   <div id="stage"></div>
   <div id="cursor-glow"></div>
-  <div class="hint">Move mouse to reflow text · Click to swap languages</div>
+  <div class="hint">Drag orbs · Click orb to pause · Click empty space to swap languages</div>
   <div class="stats" id="stats"></div>
 
   <script type="module" src="./dual-reflow.js"></script>
