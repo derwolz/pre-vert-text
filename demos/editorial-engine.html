@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="verticalLayout demo: animated orbs with real-time vertical text reflow at 60fps, zero DOM measurements.">
+  <title>The Editorial Engine — verticalLayout Demo (Tategaki)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    html, body {
+      background: radial-gradient(ellipse at 50% 40%, #0f0f14 0%, #0a0a0c 100%);
+      color: #e8e4dc; height: 100vh; overflow: hidden;
+    }
+    body { font-family: "Noto Sans JP", "Hiragino Kaku Gothic Pro", "Yu Gothic", Georgia, serif; }
+
+    #stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; user-select: none; -webkit-user-select: none; }
+
+    /* Each column-segment is an absolutely positioned span of vertical text */
+    .col-seg {
+      position: absolute; pointer-events: none; z-index: 1; color: #e8e4dc;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      white-space: nowrap; overflow: hidden;
+    }
+
+    .headline {
+      position: absolute; pointer-events: none; z-index: 2;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-weight: 700; color: #fff; letter-spacing: 2px;
+    }
+
+    .orb {
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 10;
+      will-change: transform;
+    }
+    .orb.paused { opacity: 0.45; }
+
+    .pullquote-box {
+      position: absolute; pointer-events: none; z-index: 3;
+      border-right: 3px solid #6b5a3d; padding-right: 14px;
+      writing-mode: vertical-rl; text-orientation: mixed;
+    }
+    .pq-seg {
+      position: absolute; pointer-events: none; z-index: 3;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-style: italic; color: #b8a070; white-space: nowrap;
+    }
+
+    .stats-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(6,6,10,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: 10px 24px; display: flex; gap: 32px; align-items: center;
+      font: 400 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: rgba(255,255,255,0.35); z-index: 100;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat { display: flex; gap: 6px; align-items: center; }
+    .stat-value { color: rgba(255,255,255,0.7); font-weight: 600; }
+    .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .hint {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      font: 400 13px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: rgba(255,255,255,0.22); z-index: 100;
+      background: rgba(0,0,0,0.45); padding: 8px 18px; border-radius: 999px;
+      pointer-events: none; white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="stage"></div>
+  <div class="hint">Drag the orbs · Click to pause · Vertical text reflows at 60fps · Zero DOM reads</div>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-label">Columns</span><span class="stat-value" id="sSegs">0</span></div>
+    <div class="stat"><span class="stat-label">Reflow</span><span class="stat-value" id="sReflow">0ms</span></div>
+    <div class="stat"><span class="stat-label">DOM reads</span><span class="stat-value" id="sDom">0</span></div>
+    <div class="stat"><span class="stat-label">FPS</span><span class="stat-value" id="sFps">60</span></div>
+    <div class="stat"><span class="stat-label">Rows</span><span class="stat-value" id="sRows">0</span></div>
+  </div>
+
+  <script type="module" src="./editorial-engine.js"></script>
+</body>
+</html>

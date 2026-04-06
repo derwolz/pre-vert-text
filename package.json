@@ -1,0 +1,46 @@
+{
+  "name": "pre-vert-text",
+  "version": "0.1.0",
+  "description": "Cursor-based vertical text layout engine for tategaki — the vertical counterpart of @chenglou/pretext",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "demo": "python -m http.server 9090"
+  },
+  "keywords": [
+    "text-layout",
+    "vertical-text",
+    "tategaki",
+    "japanese",
+    "cjk",
+    "pretext",
+    "column-layout",
+    "kinsoku",
+    "line-breaking",
+    "writing-mode",
+    "vertical-rl"
+  ],
+  "author": "derwolz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/derwolz/pre-vert-text"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
