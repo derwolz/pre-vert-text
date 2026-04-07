@@ -4,7 +4,7 @@ Cursor-based vertical text layout engine for Japanese tategaki (縦書き) — t
 
 **pretext** solved horizontal text layout with a two-phase architecture: measure once via canvas, then lay out with pure arithmetic at any width. **pre-vert-text** applies the same architecture to vertical text, where characters flow top-to-bottom in columns that flow right-to-left.
 
-**Demo** preverttext.com[https://preverttext.com]
+**Demo** [preverttext.com](https://preverttext.com)
 ## Features
 
 - **Two-phase design** — expensive measurement runs once; layout is pure arithmetic (~0.001ms per column)
